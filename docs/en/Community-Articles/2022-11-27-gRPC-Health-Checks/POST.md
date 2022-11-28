@@ -1,14 +1,15 @@
 # gRPC - Health Checks
 
-In this article we will show how to use gRPC health checks with the ABP Framework.
+In this article, we will show how to use gRPC health checks with the ABP Framework.
 
 ## Health Checks
 
-ASP.NET Core 7 supports gRPC health checks. Health Checks allow us to determine the overall health and availability of our application infrastructure. They are exposed as HTTP endpoints and can be configured to provide information for various monitoring scenarios, such as the response time and memory usage of our application, or whether our application can communicate with our database provider.
+ASP.NET Core 7 supports gRPC health checks. Health Checks allow us to determine our application infrastructure's overall health and availability. They are available as HTTP endpoints and can be set up to provide information for different monitoring scenarios, such as how long it takes for our application to respond and how much memory it uses or if it can talk to our database provider.
 
 ### gRPC Health Checks
 
-The [gRPC health checking protocol](https://github.com/grpc/grpc/blob/master/doc/health-checking.md) is a standard for reporting the health of gRPC server apps. An app exposes health checks as a gRPC service. They are typically used with an external monitoring service to check the status of an app.
+
+The [gRPC health checking protocol](https://github.com/grpc/grpc/blob/master/doc/health-checking.md) is a standard way for gRPC server apps to report their health. An app exposes health checks as a gRPC service. Most of the time, they are used with an outside monitoring service to check how an app is doing.
 
 ### Grpc.AspNetCore.HealthChecks
 
