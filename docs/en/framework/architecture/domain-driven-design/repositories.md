@@ -344,6 +344,32 @@ public class PersonRepository : EfCoreRepository<MyDbContext, Person, Guid>, IPe
 
 You can directly access the data access provider (`DbContext` in this case) to perform operations.
 
+#### ⚠️ Important: Custom Repository Naming Convention
+(https://abp.io/support/questions/4743/Error-EFCoreRepository-doesn%27t-get-registered-to-dependency-injection-ABP-v703)
+> **Note:**  
+> When creating a custom repository implementation, **avoid naming your class exactly as `EfCore[Entity]Repository`** (e.g., `EfCorePersonRepository`) if you want it to be registered for a custom repository interface.  
+>
+> The ABP Framework uses convention-based registration for repositories. If your custom repository class matches the default naming pattern (`EfCore[Entity]Repository`), ABP may treat it as the default generic repository and not register it for your custom interface.  
+>
+> **To ensure your custom repository is registered and injected properly, use a unique class name** (e.g., `PersonRepository`, `PersonRepositoryCustom`, or `EfCoreCustomPersonRepository`).
+
+**Example:**
+
+````
+// Good: Custom name
+public class PersonRepositoryCustom : EfCoreRepository<MyDbContext, Person, Guid>, IPersonRepository
+{
+    // ...
+}
+
+// Avoid this if you want custom DI:
+public class EfCorePersonRepository : EfCoreRepository<MyDbContext, Person, Guid>, IPersonRepository
+{
+    // ...
+}
+
+````
+
 > See [EF Core](../../data/entity-framework-core) or [MongoDb](../../data/mongodb) document for more info about the custom repositories.
 
 ## IQueryable & Async Operations
